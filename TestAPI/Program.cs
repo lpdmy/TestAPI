@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Load configuration t? nhi?u ngu?n (Azure App Service s? inject vào Environment Variables)
+builder.Configuration
+    .AddEnvironmentVariables(); // Ð?c config t? env (Azure App Settings)
 // Add services to the container.
 
 builder.Services.AddControllers();
