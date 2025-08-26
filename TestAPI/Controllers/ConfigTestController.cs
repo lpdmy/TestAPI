@@ -33,5 +33,23 @@ namespace TestAPI.Controllers
                 ConnectionString = connString
             });
         }
+
+        [HttpGet("show2")]
+        public IActionResult ShowConfig2()
+        {
+            // Lấy key từ App Settings (Azure Configuration → Application Settings)
+            var customValue = _configuration["MyCustomKey"] ?? "Not Found";
+
+            // Lấy connection string
+            var connString = _configuration.GetConnectionString("DefaultConnection")
+                             ?? "Connection string not found";
+
+            return Ok(new
+            {
+                Environment = _env.EnvironmentName,
+                CustomValue = customValue,
+                ConnectionString = connString
+            });
+        }
     }
 }
